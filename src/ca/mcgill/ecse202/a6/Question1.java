@@ -1,5 +1,7 @@
 package ca.mcgill.ecse202.a6;
-//The Scanner class, and the Input/Output library are needed in order to create, write to, and read files.
+
+// The Scanner class, and the Input/Output library are needed in order to create, write to, and read
+// files.
 import java.util.Scanner;
 import java.io.*;
 
@@ -11,19 +13,23 @@ public class Question1 {
     // below is encapsulated in try/catch blocks to handle exceptions.
     try {
       // The following statement checks if a file with the name Question1.txt exists, and creates
-      // one if it does not.
+      // one if it does not.WE ARE NOT SURE WHETHER CHECKING IF THE FILE ALREADY EXISTS BEFORE
+      // CREATING IT MEANS THAT WE ARE NOT SUPPOSED TO OVERWRITE AN EXISTING FILE. AS SUCH, WE HAVE
+      // WRITTEN OUR CODE SUCH THAT AN EXISTING FILE WITH THE DIRECTORY "Question1.txt" IS NOT OVERWRITTEN.
+
+      // The following few statements and the for loop write a 100 random numbers to the file if it
+      // did not previously exist.
       if (!x.exists()) {
-        x.createNewFile();
+        PrintWriter output = new PrintWriter(x);
+        for (int i = 0; i < 100; i++) {
+          int num = (int) (Math.random() * 10000);
+          output.print(num + " ");
+        }
+          // It is important to close the file to save what was written, and ensure that data
+          // corruption
+          // does not occur.
+        output.close();
       }
-      // The following few statements and the for loop write a 100 random numbers to the file.
-      PrintWriter output = new PrintWriter(x);
-      for (int i = 0; i < 100; i++) {
-        int num = (int) (Math.random() * 10000);
-        output.print(num + " ");
-      }
-      // It is important to close the file to save what was written, and ensure that data corruption
-      // does not occur.
-      output.close();
       // Here, a scanner object is created with the file created earlier as an argument to the
       // Scanner constructor.
       Scanner input = new Scanner(x);
