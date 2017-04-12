@@ -74,8 +74,14 @@ public class Time implements Comparable<Time>, Cloneable {
    */
   @Override
   public String toString() {
-    return this.getHour() + " hours " + this.getMinute() + " minutes " + this.getSecond()
-        + " seconds";
+    // These three statements make use of the ternary operator in order to ensure that if the hour,
+    // minute, or second is 1, then "hour", "minute", "second" is returned when the toString method
+    // is invoked.
+    String hours = (this.getHour() == 1) ? " hour " : " hours ";
+    String minutes = (this.getMinute() == 1) ? " minute " : " minutes ";
+    String seconds = (this.getSecond() == 1) ? " second " : " seconds ";
+    
+    return this.getHour() + hours + this.getMinute() + minutes + this.getSecond() + seconds;
   }
 
   /*
